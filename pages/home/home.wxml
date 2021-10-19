@@ -9,7 +9,7 @@
     show-compass="true">
     <image class = 'locationIcon' src = "/image/地图定位.png" bindtap="moveTolocation"></image>
     <image src="{{imgs.plus}}" class="control-btn control-btn-increase" bindtap="onIncreaseScale"></image>
-	  <image src="{{imgs.minus}}" class="control-btn control-btn-decrease" bindtap="onDecreaseScale"></image>
+	<image src="{{imgs.minus}}" class="control-btn control-btn-decrease" bindtap="onDecreaseScale"></image>
         
 </map>
 

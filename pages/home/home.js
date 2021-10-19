@@ -10,8 +10,8 @@ Page({
 			plus: `${CDN_PATH}/btn_plus@3x.png`,
 			minus: `${CDN_PATH}/btn_minus@3x.png`
 		},
-		longitude: "",
-    latitude: "",
+		longitude: null,
+    latitude: null,
     scale: 15,
     markers:[],
     current_info: null,
@@ -169,7 +169,7 @@ Page({
         name = item.name;
         address = item.add;
         phone = item.phone
-        console.log(item)
+        // console.log(item)
         wx.openLocation({ // 打开微信内置地图，实现导航功能（在内置地图里面打开地图软件）
           latitude: lat,
           longitude: lon,
