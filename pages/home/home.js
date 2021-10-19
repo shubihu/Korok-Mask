@@ -3,13 +3,14 @@ var QQMapWX = require('../../config/qqmap-wx-jssdk.js');
 var qqmapsdk = new QQMapWX({
   key: 'S6EBZ-ONXW3-ZCC3V-YBPBW-LNYTH-KSFO3' // 必填
 }); 
-const img = '../../image/核酸检测.png'
+const img = '../../image/marker.png'
 Page({
 	data: {
     imgs: {
+      locationIcon:`../../image/local.png`,
 			plus: `${CDN_PATH}/btn_plus@3x.png`,
 			minus: `${CDN_PATH}/btn_minus@3x.png`
-		},
+    },
 		longitude: null,
     latitude: null,
     scale: 15,
@@ -19,7 +20,7 @@ Page({
   },
 
   //获取marker位置信息
-  getMarkerInfo(latitude,longitude){//传入自身定位坐标，返回多个marker，内包含dis（与自己的距离）
+  getMarkerInfo(latitude,longitude){//传入自身定位坐标
     var that = this
     qqmapsdk.reverseGeocoder({
       location: {
@@ -30,9 +31,9 @@ Page({
         console.log(JSON.stringify(res));
         // let province = res.result.ad_info.province
         let city = res.result.ad_info.city
+        let district = res.result.ad_info.district
         // let city = '上海市浦东新区'
         wx.request({
-          // url: 'http://gjzwfw.www.gov.cn/fwmh/healthCode/getNucleic.do',
           url: 'http://gjzwfw.www.gov.cn/fwmh/healthCode/getNucleic.do',
           data: `regionCode=00&keyword=${city}&pagenum=1&pagesize=100000`,
           method: 'POST',
@@ -115,8 +116,8 @@ Page({
     const marker = {
       id: null,
       iconPath: img,
-      width: 50,
-      height: 50,
+      width: 30,
+      height: 30,
       joinCluster: true, // 指定了该参数才会参与聚合
       // label:{
       //   width: 50,
@@ -164,11 +165,11 @@ Page({
 
     for (let item of markers){
       if (item.id === markerId) {
-        lat = item.latitude;
-        lon = item.longitude;
-        name = item.name;
-        address = item.add;
-        phone = item.phone
+        let lat = item.latitude;
+        let lon = item.longitude;
+        let name = item.name;
+        let address = item.add;
+        // phone = item.phone
         // console.log(item)
         wx.openLocation({ // 打开微信内置地图，实现导航功能（在内置地图里面打开地图软件）
           latitude: lat,
