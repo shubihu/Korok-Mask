@@ -34,7 +34,7 @@ Page({
         let district = res.result.ad_info.district
         // let city = '上海市浦东新区'
         wx.request({
-          url: 'http://gjzwfw.www.gov.cn/fwmh/healthCode/getNucleic.do',
+          url: 'https://gjzwfw.www.gov.cn/fwmh/healthCode/getNucleic.do',
           data: `regionCode=00&keyword=${city}&pagenum=1&pagesize=100000`,
           method: 'POST',
           header: {

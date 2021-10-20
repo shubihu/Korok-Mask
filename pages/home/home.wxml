@@ -5,8 +5,8 @@
     latitude="{{latitude}}"
     scale="{{scale}}"
     bindmarkertap="gotohere"
-    show-location="true"
-    show-compass="true">
+    show-location
+    show-compass>
     <image class = 'locationIcon' src = "{{imgs.locationIcon}}" bindtap="moveTolocation"></image>
     <image src="{{imgs.plus}}" class="control-btn control-btn-increase" bindtap="onIncreaseScale"></image>
 	<image src="{{imgs.minus}}" class="control-btn control-btn-decrease" bindtap="onDecreaseScale"></image>
