@@ -1,4 +1,5 @@
 import {CDN_PATH} from '../../config/appConfig';
+var progressNum = 0
 var QQMapWX = require('../../config/qqmap-wx-jssdk.js');
 var qqmapsdk = new QQMapWX({
   key: 'S6EBZ-ONXW3-ZCC3V-YBPBW-LNYTH-KSFO3' // 必填
@@ -16,7 +17,9 @@ Page({
     scale: 15,
     markers:[],
     current_info: null,
-    info:[]
+    info:[],
+    pro:0,
+    isShowView : true
   },
 
   //获取marker位置信息
@@ -74,6 +77,18 @@ Page({
 
   onLoad: function () {
     var self=this;
+    var timerpro = setInterval(function(){
+      progressNum++
+      if (progressNum>=100){
+        self.setData({ 
+          isShowView : false
+        })
+      }
+      self.setData({
+        pro:progressNum
+      })
+    }, 20)
+
     this.mapCtx = wx.createMapContext('map');
     wx.getLocation({
       type: 'gcj02',
@@ -85,7 +100,7 @@ Page({
         self.getMarkerInfo(res.latitude, res.longitude)
       }
     })
-    // this.getMarkerInfo(res.latitude, res.longitude)
+
   },
 
 	moveTolocation: function () { //回到当前定位坐标

@@ -1,3 +1,6 @@
+<view wx:if='{{isShowView}}'>
+    <progress percent='{{pro}}' stroke-width="3"/>
+</view>
 <map id="map"
     markers="{{markers}}"
     style="width:100%;height:100vh;"
