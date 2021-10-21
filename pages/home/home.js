@@ -77,18 +77,6 @@ Page({
 
   onLoad: function () {
     var self=this;
-    var timerpro = setInterval(function(){
-      progressNum++
-      if (progressNum>=100){
-        self.setData({ 
-          isShowView : false
-        })
-      }
-      self.setData({
-        pro:progressNum
-      })
-    }, 20)
-
     this.mapCtx = wx.createMapContext('map');
     wx.getLocation({
       type: 'gcj02',
@@ -97,10 +85,20 @@ Page({
           latitude : res.latitude,
           longitude : res.longitude,
         });
+        var timerpro = setInterval(function(){
+          progressNum++
+          if (progressNum>=100){
+            self.setData({ 
+              isShowView : false
+            })
+          }
+          self.setData({
+            pro:progressNum
+          })
+        }, 20)
         self.getMarkerInfo(res.latitude, res.longitude)
       }
     })
-
   },
 
 	moveTolocation: function () { //回到当前定位坐标
