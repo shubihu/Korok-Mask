@@ -66,7 +66,7 @@ Page({
             that.setData({
               info: info_list
             });
-            that.addMarkers();
+            that.addMarkers();   
         // 使用默认聚合效果时可注释下一句
             // that.bindEvent();
           }
@@ -87,7 +87,7 @@ Page({
         });
         var timerpro = setInterval(function(){
           progressNum++
-          if (progressNum>=100){
+          if (progressNum>=100){  
             self.setData({ 
               isShowView : false
             })
@@ -96,7 +96,13 @@ Page({
             pro:progressNum
           })
         }, 20)
-        self.getMarkerInfo(res.latitude, res.longitude)
+        // wx.showToast({ 
+        //   title:'加载中', 
+        //   icon:'loading', 
+        //   mask:true 
+        // })
+        // wx.hideToast();
+        self.getMarkerInfo(res.latitude, res.longitude) 
       }
     })
   },
